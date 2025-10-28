@@ -1,0 +1,6 @@
+SELECT d.paisnombre AS pais,
+       SUM(v.taxusd) / NULLIF(SUM(v.netusd), 0) AS tax_to_net_ratio
+FROM ventas v
+JOIN dimpais d ON d.paiscode = v.paiscode
+GROUP BY d.paisnombre
+ORDER BY d.paisnombre;

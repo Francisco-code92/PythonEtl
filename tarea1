@@ -1,0 +1,8 @@
+SELECT d.paisnombre AS pais,
+       SUM(v.netusd) AS netusd_total,
+       SUM(v.taxusd) AS taxusd_total
+FROM ventas v
+JOIN dimpais d ON d.paiscode = v.paiscode
+GROUP BY d.paisnombre
+ORDER BY d.paisnombre;
+

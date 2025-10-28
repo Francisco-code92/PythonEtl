@@ -1,0 +1,25 @@
+-- Dim País
+CREATE TABLE dimpais (
+  paiscode   VARCHAR(10) PRIMARY KEY,
+  paisnombre VARCHAR(100) NOT NULL
+);
+
+INSERT INTO dimpais (paiscode, paisnombre) VALUES
+('EC','Ecuador'),
+('CO','Colombia'),
+('PE','Perú');
+
+-- Ventas
+CREATE TABLE ventas (
+  factid   SERIAL PRIMARY KEY,               -- o: GENERATED ALWAYS AS IDENTITY
+  paiscode VARCHAR(10)   NOT NULL REFERENCES dimpais(paiscode),
+  fecha    DATE          NOT NULL,
+  netusd   NUMERIC(18,2) NOT NULL,
+  taxusd   NUMERIC(18,2) NOT NULL
+);
+
+INSERT INTO ventas (paiscode, fecha, netusd, taxusd) VALUES
+('EC','2024-05-01',1000,120),
+('CO','2024-05-02', 650,123.50),
+('PE','2024-05-03', 800,144),
+('EC','2024-05-10', 900,108);
